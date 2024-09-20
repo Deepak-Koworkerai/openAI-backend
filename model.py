@@ -18,13 +18,17 @@ import requests
 import textwrap
 from langchain_openai import OpenAI, OpenAIEmbeddings
 import sys
+from dotenv import load_dotenv
+import os
+
+load_dotenv()  
 
 # Increase recursion limit
 sys.setrecursionlimit(3000)
 
 # Check if OpenAI API Key is set in the environment
 if "OPENAI_API_KEY" not in os.environ:
-    os.environ["OPENAI_API_KEY"] = "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"
+    os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
 
 # Set up logging
 logging.basicConfig(level=logging.INFO)
@@ -105,3 +109,4 @@ def ask():
 if __name__ == '__main__':
     # Run the app in debug mode
     app.run(debug=True, threaded=True, port=5000, host='0.0.0.0')
+
